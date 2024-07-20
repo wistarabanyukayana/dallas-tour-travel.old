@@ -1,0 +1,9 @@
+# Secret Directories
+config/
+
+# Dependency Directories
+node_modules/
+
+#Unknown Use Directories
+migrations/
+seeders/

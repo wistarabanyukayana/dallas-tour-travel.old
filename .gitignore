@@ -1,5 +1,6 @@
-# Secret Directories
+# Secret Directories & Files
 config/
+.env
 
 # Dependency Directories
 node_modules/

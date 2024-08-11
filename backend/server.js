@@ -2,6 +2,7 @@ require("dotenv").config();
 
 const cors = require("cors");
 const express = require("express");
+const fileUpload = require("express-fileupload");
 const db = require("./models");
 const articlesRoutes = require("./routes/articles");
 
@@ -10,7 +11,9 @@ const app = express();
 
 // middleware
 app.use(cors());
+app.use(fileUpload());
 app.use(express.json());
+app.use(express.static("public"));
 
 app.use((req, res, next) => {
   console.log(req.path, req.method);

@@ -1,0 +1,207 @@
+/* -----------------------------------------------------
+		Top Bar : Style
+   ----------------------------------------------------- */
+
+#top-bar {
+  padding: 10px 0px 10px 0px;
+}
+
+#top-bar.container-header {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+#top-bar ul {
+  margin-bottom: 0px;
+  letter-spacing: 0.03em;
+  font-size: 14px;
+  line-height: 1.8em;
+}
+
+#top-bar #info li:first-child {
+  margin-right: 20px;
+}
+
+#top-bar #info ul li .fa {
+  padding-right: 10px;
+  font-size: 16px;
+}
+
+#top-bar #links {
+  float: right;
+}
+
+#top-bar #links a {
+  padding-bottom: 0px;
+}
+
+#top-bar #links a .fa {
+  padding-left: 10px;
+  font-size: 14px;
+  margin-right: 8px;
+}
+
+#top-bar #links ul li {
+  padding-left: 0px;
+}
+
+#top-bar #links ul li:last-child {
+  padding-right: 0px;
+}
+
+#top-bar form ul li:last-child {
+  margin-left: 12px;
+}
+
+#top-bar #links > ul > li form {
+  position: relative;
+  padding-left: 25px;
+}
+
+#top-bar #links > ul > li form:after {
+  position: absolute;
+  content: "";
+  height: 15px;
+  width: 1px;
+  display: block;
+  top: 5px;
+  left: 0px;
+}
+
+#top-bar .form-group {
+  margin-bottom: 0px;
+}
+
+#top-bar .form-group {
+  font-size: 15px;
+  position: relative;
+  text-transform: uppercase;
+  width: 45px;
+}
+
+#top-bar .form-group.currency {
+  width: 35px;
+}
+
+#top-bar .form-group .fa {
+  position: absolute;
+  right: 0px;
+  top: 5px;
+  font-size: 18px;
+  pointer-events: none;
+}
+
+#top-bar .form-group select {
+  z-index: 9999;
+  padding: 0px;
+  height: auto;
+  z-index: 1;
+}
+
+/* -----------------------------------------------------
+      Top Bar : Color
+   ----------------------------------------------------- */
+
+#top-bar {
+  background-color: #010066;
+}
+
+#top-bar.colored {
+  background: #fa1a1a;
+}
+
+#top-bar.transparent {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+#top-bar .form-group select {
+  background: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: 0px;
+  box-shadow: none;
+}
+
+#top-bar .form-group select option {
+  color: black;
+}
+
+#top-bar.tb-text-white #links ul li a,
+#top-bar.tb-text-white #info ul li,
+#top-bar.tb-text-white .form-group select,
+#top-bar.tb-text-white .form-group .fa {
+  color: white;
+}
+
+#top-bar.tb-text-white #links > ul > li form:after {
+  background: white;
+}
+
+#top-bar.tb-text-grey #links ul li a,
+#top-bar.tb-text-grey #info ul li,
+#top-bar.tb-text-grey .form-group select,
+#top-bar.tb-text-grey .form-group .fa {
+  color: #939598;
+}
+
+#top-bar.tb-text-grey #links > ul > li form:after {
+  background: #939598;
+}
+
+/* -----------------------------------------------------
+		Top Bar : Responsive
+   ----------------------------------------------------- */
+
+@media (min-width: 768px) and (max-width: 991px) {
+  #top-bar.container-header #info li:first-child {
+    margin-right: 5px;
+  }
+
+  #top-bar.container-header #links > ul > li form {
+    padding-left: 18px;
+    margin-left: 10px;
+  }
+
+  #top-bar.container-header form ul li:last-child {
+    margin-left: 4px;
+  }
+
+  #top-bar #links > ul > li form {
+    padding-left: 22px;
+    margin-left: 15px;
+  }
+}
+
+@media (min-width: 992px) {
+  #top-bar #links ul li form {
+    margin-left: 15px;
+  }
+}
+
+@media (max-width: 767px) {
+  #top-bar {
+    text-align: center;
+  }
+
+  #top-bar #info li:first-child {
+    margin-right: 0px;
+  }
+
+  #top-bar #info li {
+    margin: 0px 5px 3px;
+  }
+
+  #top-bar #links {
+    float: none;
+    text-align: center;
+  }
+
+  #top-bar #links > ul > li form {
+    padding-left: 18px;
+    margin-left: 10px;
+  }
+
+  #top-bar form ul li:last-child {
+    margin-left: 4px;
+  }
+}

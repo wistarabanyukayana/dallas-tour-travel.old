@@ -1,35 +1,40 @@
 const { Articles } = require("../models");
 
+const { ProcessImage, DeleteImage } = require("../utils/image");
+
 // get all articles
-const getArticles = async (req, res) => {
+const GetArticles = async (req, res) => {
   const articles = await Articles.findAll({ order: [["createdAt", "DESC"]] });
 
   res.status(200).json(articles);
 };
 
 // get a single article
-const getArticle = async (req, res) => {
+const GetArticle = async (req, res) => {
   const { id } = req.params;
 
   const article = await Articles.findByPk(id);
 
-  if (!article) {
-    return res.status(404).json({ error: "No such article" });
-  }
+  if (!article) return res.status(404).json({ error: "No such article" });
 
   res.status(200).json(article);
 };
 
 // create a new article
-const createArticle = async (req, res) => {
-  const { title, content, author } = req.body;
+const CreateArticle = async (req, res) => {
+  //const { title, content, author } = req.body;
+
+  const image = await ProcessImage(req);
+
+  if (image != null && image.error)
+    return res.status(image.status).json(image.error);
 
   // add doc to db
   try {
     const article = await Articles.create({
-      title,
-      content,
-      author,
+      image: image ? image[0] : null,
+      imageURL: image ? image[1] : null,
+      ...req.body,
     });
     res.status(200).json(article);
   } catch (error) {
@@ -38,33 +43,65 @@ const createArticle = async (req, res) => {
 };
 
 // delete an article
-const deleteArticle = async (req, res) => {
+const DeleteArticle = async (req, res) => {
   const { id } = req.params;
 
-  const article = await Articles.destroy({
-    where: {
-      id,
-    },
-    force: true,
+  const article = await Articles.findByPk(id);
+
+  if (!article) return res.status(404).json({ error: "No such article" });
+
+  const imageOwnerCount = await Articles.count({
+    where: { image: article.image },
   });
 
-  if (!article) {
-    return res.status(404).json({ error: "No such article" });
+  try {
+    if (imageOwnerCount == 1) {
+      DeleteImage(article.image);
+    }
+
+    await Articles.destroy({
+      where: {
+        id,
+      },
+    });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
   }
 
   res.status(200).json({ success: "Article successfully deleted" });
 };
 
 // update an article
-const updateArticle = async (req, res) => {
+const UpdateArticle = async (req, res) => {
   const { id } = req.params;
 
-  try {
-    const article = await Articles.update({ ...req.body }, { where: { id } });
+  const article = await Articles.findByPk(id);
 
-    if (!article || article == 0) {
-      return res.status(404).json({ error: "No such article" });
+  if (!article || article == 0)
+    return res.status(404).json({ error: "No such article" });
+
+  const image = await ProcessImage(req, article);
+
+  if (image != null && image.error)
+    return res.status(image.status).json(image.error);
+
+  const imageOwnerCount = await Articles.count({
+    where: { image: article.image },
+  });
+
+  try {
+    if (imageOwnerCount == 1 && image[0] != article.image) {
+      DeleteImage(article.image);
     }
+
+    await Articles.update(
+      {
+        image: image[0],
+        imageURL: image[1],
+        ...req.body,
+      },
+      { where: { id } }
+    );
 
     res.status(200).json({ success: "Article successfully updated" });
   } catch (error) {
@@ -73,9 +110,9 @@ const updateArticle = async (req, res) => {
 };
 
 module.exports = {
-  getArticles,
-  getArticle,
-  createArticle,
-  deleteArticle,
-  updateArticle,
+  GetArticles,
+  GetArticle,
+  CreateArticle,
+  DeleteArticle,
+  UpdateArticle,
 };

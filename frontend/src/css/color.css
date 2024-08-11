@@ -1,0 +1,243 @@
+/* ----------------------------------------------------
+Theme Name: Travel Theme - HTML Template
+Version:		1.0.0
+Author:			Wistara Banyu Kayana
+------------------------------------------------------- */
+
+/* ======================================================
+	TABLE OF CONTENTS
+   ====================================================== */
+
+/**
+
+* 1.0	Settings
+* 1.1	Top Bar
+* 1.2	Navbar
+* 1.3	Slider
+* 1.4	Search Tabs
+* 1.5	Main Block
+* 1.6	Hotel Block
+* 1.7	Tour Block
+* 1.8	Cruise Block
+* 1.9	Flight Block
+* 1.10	Destination Block
+* 1.11	Vehicle Block
+* 1.12	Gallery
+* 1.13	Best Features
+* 1.14	Luxury Offers
+* 1.15	Highlights
+* 1.16	Banners
+* 1.17	Testimonials
+* 1.18	Latest Blog
+* 1.19	Packages
+* 1.20	Newsletter
+* 1.21	Contact Form
+* 1.22	Footer
+* 1.23	Page Cover
+* 1.24	Sidebar
+* 1.25	Grid Block
+* 1.26	List Block
+* 1.27	Pagination
+* 1.28	Detail Pages Tabs
+* 1.29	Detail Pages Slider
+* 1.30	Custom Forms
+* 1.31	Extra Pages
+* 1.32	Contact Us
+
+**/
+
+/* -----------------------------------------------------
+		Settings
+   ----------------------------------------------------- */
+
+p {
+  color: #808285;
+}
+
+.page-heading h2 {
+  color: #231f20;
+}
+
+.page-heading.white-heading h2 {
+  color: white;
+}
+
+.page-heading .heading-line {
+  border-color: #fa1a1a;
+  border-width: medium;
+}
+
+.innerpage-heading h1 {
+  color: #000000;
+}
+
+.trip-heading span {
+  color: #fa1a1a;
+}
+
+.yellow-line {
+  border-color: #fa1a1a;
+  border-width: 5px;
+}
+
+.bg-grey {
+  background: #f1f2f2;
+}
+
+.btn {
+  border-radius: 0px;
+  border: 0px;
+}
+
+.btn-orange,
+.btn-orange:focus {
+  background: #fa1a1a;
+  color: white;
+}
+
+.btn-orange:hover {
+  background: #010101;
+  color: white;
+}
+
+.lg-booking-form .payment-tabs #tab-paypal .paypal-text .btn {
+  color: #000;
+  background-color: #d1d1d1ff;
+}
+
+.lg-booking-form .payment-tabs #tab-paypal .paypal-text .btn:hover {
+  color: #d1d1d1ff;
+  background-color: #000;
+}
+
+.table-responsive .table tr td .btn-orange,
+.table-responsive .table tr td .btn-orange:focus {
+  background: #fa1a1a;
+  color: white;
+}
+
+.table-responsive .table tr td .btn-orange:hover {
+  background: #010101;
+  color: white;
+}
+
+.btn-black,
+.btn-black:focus {
+  background: #000;
+  color: white;
+}
+
+.btn-black:hover {
+  background: #fa1a1a;
+  color: white;
+}
+
+.btn-o-border {
+  border: 1px solid #fa1a1a;
+  color: #fa1a1a;
+}
+
+.btn-o-border:hover {
+  border-color: #fa1a1a;
+  color: white;
+  background: #fa1a1a;
+}
+
+.btn-w-border {
+  border: 1px solid #e2e1e1;
+  color: white;
+}
+
+.btn-w-border:hover {
+  border: 1px solid white;
+  color: black;
+  background: white;
+}
+
+.btn-g-border,
+.btn-g-border:focus {
+  border: 1px solid #939598;
+  color: #565656;
+}
+
+.btn-g-border:hover {
+  border: 1px solid black;
+  color: white;
+  background: black;
+}
+
+.btn-white,
+.btn-white:focus {
+  background: white;
+  color: #000;
+}
+
+.btn-white:hover {
+  background: #fa1a1a;
+  color: #000;
+}
+
+.table-responsive .table tr td .btn-lightgrey,
+.table-responsive .table tr td .btn-lightgrey:focus {
+  background: #efefef;
+  color: #000;
+}
+
+.table-responsive .table tr td .btn-lightgrey:hover {
+  background: #303030;
+  color: white;
+}
+
+.owl-carousel.owl-custom-arrow .owl-nav button.owl-prev,
+.owl-carousel.owl-custom-arrow .owl-nav button.owl-next {
+  border-radius: 0px;
+  background: white;
+}
+
+.owl-carousel.owl-custom-arrow .owl-nav button.owl-prev:hover,
+.owl-carousel.owl-custom-arrow .owl-nav button.owl-next:hover {
+  background: red;
+}
+
+.owl-carousel.owl-custom-arrow .owl-nav button.owl-prev:active,
+.owl-carousel.owl-custom-arrow .owl-nav button.owl-next:active {
+  background: -moz-repeating-radial-gradient();
+}
+
+.map iframe {
+  border: 0px;
+}
+
+.border-shape-top::before,
+.border-shape-top::after {
+  background: #333;
+}
+
+.border-shape-bot::before,
+.border-shape-bot::after {
+  background: #fa1a1a;
+}
+
+@media (max-width: 991px) {
+  .back-size {
+    background-size: cover !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .table-responsive {
+    border: 0px;
+    margin: 0px;
+  }
+}
+
+/* -----------------------------------------------------
+        Buttons boxshadow unset on focus unsetting
+     ----------------------------------------------------- */
+.btn:focus,
+.navbar-toggler:focus,
+button:focus,
+input:focus {
+  outline: unset;
+  box-shadow: none;
+}

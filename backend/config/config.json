@@ -1,0 +1,24 @@
+{
+  "development": {
+    "username": "root",
+    "password": "MariaDBWtr031733",
+    "database": "dallastourtravel_dev",
+    "host": "localhost",
+    "port": 7777,
+    "dialect": "mariadb"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "66.115.170.90",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "database_production",
+    "host": "66.115.170.90",
+    "dialect": "mysql"
+  }
+}

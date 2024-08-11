@@ -1,0 +1,148 @@
+/* ----------------------------------------------------
+Theme Name: Travel Theme - HTML & Bootstrap Template
+Version:		1.0.0
+Author:			Wistara Banyu Kayana
+------------------------------------------------------- */
+
+/* ======================================================
+	TABLE OF CONTENTS
+   ====================================================== */
+
+/**
+
+* 1.0	Settings
+* 1.1	Top Bar
+* 1.2	Navbar
+* 1.3	Slider
+* 1.4	Search Tabs
+* 1.5	Main Block
+* 1.6	Hotel Block
+* 1.7	Tour Block
+* 1.8	Cruise Block
+* 1.9	Flight Block
+* 1.10	Destination Block
+* 1.11	Vehicle Block
+* 1.12	Gallery
+* 1.13	Best Features
+* 1.14	Luxury Offers
+* 1.15	Highlights
+* 1.16	Banners
+* 1.17	Testimonials
+* 1.18	Latest Blog
+* 1.19	Packages
+* 1.20	Newsletter
+* 1.21	Contact Form
+* 1.22	Footer
+* 1.23	Page Cover
+* 1.24	Sidebar
+* 1.25	Grid Block
+* 1.26	List Block
+* 1.27	Pagination
+* 1.28	Detail Pages Tabs
+* 1.29	Detail Pages Slider
+* 1.30	Custom Forms
+* 1.31	Extra Pages
+
+**/
+
+/* -----------------------------------------------------
+		Settings
+   ----------------------------------------------------- */
+
+@media (min-width: 991px) and (max-width: 1200px) {
+  .page-heading p {
+    width: 75%;
+  }
+}
+
+@media (min-width: 992px) {
+  .no-pd-r {
+    padding-right: 0px;
+  }
+
+  .no-pd-l {
+    padding-left: 0px;
+  }
+
+  .space-right {
+    padding-right: 30px;
+  }
+}
+
+@media (max-width: 991px) {
+  .page-heading p {
+    width: 90%;
+  }
+
+  .innerpage-heading p {
+    width: 90%;
+  }
+}
+
+@media (max-width: 768px) {
+  .btn {
+    font-size: 14px;
+  }
+
+  .btn-padding {
+    padding: 10px 30px;
+  }
+
+  .page-heading h2 {
+    font-size: 32px;
+  }
+
+  .page-heading p {
+    font-size: 17px;
+  }
+
+  .innerpage-heading h1 {
+    font-size: 30px;
+  }
+
+  .innerpage-heading p {
+    font-size: 16px;
+  }
+
+  .butn .btn {
+    width: 200px;
+    padding: 14px 0px;
+  }
+}
+
+@media (max-width: 767px) {
+  .view-all {
+    margin-top: 50px;
+  }
+}
+
+@media (max-width: 400px) {
+  .page-heading h2 {
+    font-size: 27px;
+  }
+
+  .innerpage-heading h1 {
+    font-size: 28px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .col-lg-15 {
+    width: 20%;
+    float: left;
+  }
+}
+
+@media (min-width: 992px) {
+  .col-md-15 {
+    width: 20%;
+    float: left;
+  }
+}
+
+@media (min-width: 768px) {
+  .col-md-15 {
+    width: 20%;
+    float: left;
+  }
+}

@@ -1,7 +1,7 @@
-import "./css/loader.css";
+//import "./css/loader.css";
 
 const Loader = () => {
-  return <div class="loader" style={{ display: "none" }}></div>;
+  return <div className="loader"></div>;
 };
 
 export default Loader;

@@ -1,0 +1,158 @@
+/* Settings */
+
+@media (min-width: 991px) and (max-width: 1200px) {
+  .page-heading p {
+    width: 75%;
+  }
+}
+
+@media (min-width: 992px) {
+  .no-pd-r {
+    padding-right: 0px;
+  }
+
+  .no-pd-l {
+    padding-left: 0px;
+  }
+
+  .space-right {
+    padding-right: 30px;
+  }
+}
+
+@media (max-width: 991px) {
+  .page-heading p {
+    width: 90%;
+  }
+
+  .innerpage-heading p {
+    width: 90%;
+  }
+}
+
+@media (max-width: 768px) {
+  .btn {
+    font-size: 14px;
+  }
+
+  .btn-padding {
+    padding: 10px 30px;
+  }
+
+  .page-heading h2 {
+    font-size: 32px;
+  }
+
+  .page-heading p {
+    font-size: 17px;
+  }
+
+  .innerpage-heading h1 {
+    font-size: 30px;
+  }
+
+  .innerpage-heading p {
+    font-size: 16px;
+  }
+
+  .butn .btn {
+    width: 200px;
+    padding: 14px 0px;
+  }
+}
+
+@media (max-width: 767px) {
+  .view-all {
+    margin-top: 50px;
+  }
+}
+
+@media (max-width: 400px) {
+  .page-heading h2 {
+    font-size: 27px;
+  }
+
+  .innerpage-heading h1 {
+    font-size: 28px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .col-lg-15 {
+    width: 20%;
+    float: left;
+  }
+}
+
+@media (min-width: 992px) {
+  .col-md-15 {
+    width: 20%;
+    float: left;
+  }
+}
+
+@media (min-width: 768px) {
+  .col-md-15 {
+    width: 20%;
+    float: left;
+  }
+}
+
+/* Main Block */
+
+/************** OFFER-PRICE-1 *************/
+
+/************** OFFER-PRICE-1 *************/
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .offer-price-1 li.price {
+    font-size: 17px;
+  }
+
+  .offer-price-1 li.price .pkg,
+  .offer-price-1 li.rating .fa {
+    font-size: 12px;
+  }
+
+  .offer-price-1 li.price .pkg,
+  .offer-price-1 li.price .divider {
+    top: -1px;
+  }
+}
+
+@media (max-width: 767px) {
+  .offer-price-1 li.price {
+    font-size: 17px;
+  }
+
+  .offer-price-1 li.price .pkg,
+  .offer-price-1 li.rating .fa {
+    font-size: 11px;
+  }
+
+  .offer-price-1 li.price .pkg,
+  .offer-price-1 li.price .divider {
+    top: -1px;
+  }
+}
+
+@media (max-width: 630px) {
+  .offer-price-1 li.price .divider {
+    margin: 0px 5px;
+  }
+}
+
+/************** OFFER-PRICE-2 *************/
+
+/*@media(min-width:992px) and (max-width:1199px){
+	
+	.offer-price-2 li.price{
+		font-size:20px;
+	}
+}*/
+
+@media (max-width: 767px) {
+  .offer-price-2 li.price {
+    font-size: 20px;
+  }
+}

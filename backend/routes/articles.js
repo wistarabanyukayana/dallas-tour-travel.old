@@ -1,7 +1,6 @@
 const express = require("express");
 const {
   GetArticles,
-  GetArticle,
   CreateArticle,
   DeleteArticle,
   UpdateArticle,
@@ -9,11 +8,8 @@ const {
 
 const router = express.Router();
 
-// GET all articles
-router.get("/", GetArticles);
-
-// GET a single article
-router.get("/:id", GetArticle);
+// GET all articles, a single article or a certain amount of article
+router.get("/:id/:limit?", GetArticles);
 
 // POST a new article
 router.post("/", CreateArticle);

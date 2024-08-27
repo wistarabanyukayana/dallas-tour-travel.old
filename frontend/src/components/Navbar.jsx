@@ -1,11 +1,18 @@
-import "./css/navbar.css";
+//import "./css/navbar.css";
 
+import { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
+
+import navSetUp from "./tools/navSetUp";
 
 import logo from "../assets/img/ftr-logo.png";
 
 const Navbar = () => {
   const { pathname } = useLocation();
+
+  useEffect(() => {
+    navSetUp();
+  }, []);
 
   return (
     <nav
@@ -19,7 +26,7 @@ const Navbar = () => {
         <div className="header-search d-xl-none my-auto ms-auto py-1">
           <Link to="#" className="search-button" onClick="openSearch()">
             <span>
-              <i class="fa fa-search"></i>
+              <i className="fa fa-search"></i>
             </span>
           </Link>
         </div>
@@ -33,7 +40,7 @@ const Navbar = () => {
           aria-label="Toggle navigation"
           id="sidebarCollapse"
         >
-          <i class="fa fa-navicon py-1"></i>
+          <i className="fa fa-navicon py-1"></i>
         </button>
 
         <div className="collapse navbar-collapse" id="myNavbar1">
@@ -70,7 +77,7 @@ const Navbar = () => {
               >
                 Produk & Layanan
                 <span>
-                  <i class="fa fa-angle-down"></i>
+                  <i className="fa fa-angle-down"></i>
                 </span>
               </Link>
               <ul className="dropdown-menu">
@@ -142,7 +149,7 @@ const Navbar = () => {
             <li className="dropdown-item search-btn">
               <Link to="#" className="search-button" onClick="openSearch()">
                 <span>
-                  <i class="fa fa-search"></i>
+                  <i className="fa fa-search"></i>
                 </span>
               </Link>
             </li>

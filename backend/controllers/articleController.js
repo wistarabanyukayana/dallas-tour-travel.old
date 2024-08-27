@@ -2,18 +2,21 @@ const { Articles } = require("../models");
 
 const { ProcessImage, DeleteImage } = require("../utils/image");
 
-// get all articles
-const GetArticles = async (req, res) => {
-  const articles = await Articles.findAll({ order: [["createdAt", "DESC"]] });
-
-  res.status(200).json(articles);
-};
-
 // get a single article
-const GetArticle = async (req, res) => {
-  const { id } = req.params;
+const GetArticles = async (req, res) => {
+  const { limit, id } = req.params;
 
-  const article = await Articles.findByPk(id);
+  const article =
+    id == "all"
+      ? limit
+        ? await Articles.findAll({
+            order: [["createdAt", "DESC"]],
+            limit: parseInt(limit),
+          })
+        : await Articles.findAll({
+            order: [["createdAt", "DESC"]],
+          })
+      : await Articles.findByPk(id);
 
   if (!article) return res.status(404).json({ error: "No such article" });
 
@@ -111,7 +114,6 @@ const UpdateArticle = async (req, res) => {
 
 module.exports = {
   GetArticles,
-  GetArticle,
   CreateArticle,
   DeleteArticle,
   UpdateArticle,

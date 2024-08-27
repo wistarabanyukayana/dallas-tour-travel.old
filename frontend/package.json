@@ -1,4 +1,5 @@
 {
+  "proxy": "http://localhost:4000",
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
@@ -12,6 +13,10 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "bootstrap": "^5.3.3",
+    "flexslider": "^2.7.2",
+    "jquery": "^3.7.1",
+    "malihu-custom-scrollbar-plugin": "^3.1.5",
+    "owl.carousel": "^2.3.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.26.0",
@@ -41,5 +46,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/jquery": "^3.5.30"
   }
 }

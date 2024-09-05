@@ -17,9 +17,11 @@ module.exports = (sequelize, DataTypes) => {
       },
       image: {
         type: DataTypes.STRING,
+        defaultValue: "defaultArticlesImg.png",
       },
       imageURL: {
         type: DataTypes.STRING,
+        defaultValue: "http://localhost:4000/images/defaultArticlesImg.png",
       },
       title: {
         type: DataTypes.STRING,
@@ -30,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       content: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(7000),
         allowNull: false,
         validate: {
           notNull: { msg: "Article must have a content" },

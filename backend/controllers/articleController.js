@@ -1,100 +1,85 @@
 const { Articles } = require("../models");
+const imageHandler = require("../utils/handlers/imageHandler");
 
-const { ProcessImage, DeleteImage } = require("../utils/image");
-
-// get a single article
+// GET all articles, a single article or a certain amount of article
 const GetArticles = async (req, res) => {
-  const { limit, id } = req.params;
+  try {
+    const { limit, id } = req.params;
+    const queryOptions = {
+      order: [["createdAt", "DESC"]],
+      ...(limit && { limit: parseInt(limit) }),
+    };
 
-  const article =
-    id == "all"
-      ? limit
-        ? await Articles.findAll({
-            order: [["createdAt", "DESC"]],
-            limit: parseInt(limit),
-          })
-        : await Articles.findAll({
-            order: [["createdAt", "DESC"]],
-          })
-      : await Articles.findByPk(id);
+    const article =
+      id === "all"
+        ? await Articles.findAll(queryOptions)
+        : await Articles.findByPk(id);
 
-  if (!article) return res.status(404).json({ error: "No such article" });
+    if (!article) return res.status(404).json({ error: "No such article" });
 
-  res.status(200).json(article);
+    res.status(200).json(article);
+  } catch (error) {
+    next(error);
+  }
 };
 
-// create a new article
+// Create a new article
 const CreateArticle = async (req, res) => {
-  //const { title, content, author } = req.body;
-
-  const image = await ProcessImage(req);
-
-  if (image != null && image.error)
-    return res.status(image.status).json(image.error);
-
-  // add doc to db
   try {
+    const image = await imageHandler(req, "process");
+
     const article = await Articles.create({
       image: image ? image[0] : null,
       imageURL: image ? image[1] : null,
       ...req.body,
     });
+
     res.status(200).json(article);
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    next(error);
   }
 };
 
-// delete an article
+// Delete an article
 const DeleteArticle = async (req, res) => {
-  const { id } = req.params;
-
-  const article = await Articles.findByPk(id);
-
-  if (!article) return res.status(404).json({ error: "No such article" });
-
-  const imageOwnerCount = await Articles.count({
-    where: { image: article.image },
-  });
-
   try {
+    const { id } = req.params;
+    const article = await Articles.findByPk(id);
+
+    if (!article) return res.status(404).json({ error: "No such article" });
+
+    const imageOwnerCount = await Articles.count({
+      where: { image: article.image },
+    });
+
     if (imageOwnerCount == 1) {
-      DeleteImage(article.image);
+      imageHandler(req, "delete", article.image);
     }
 
-    await Articles.destroy({
-      where: {
-        id,
-      },
-    });
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
+    await Articles.destroy({ where: { id } });
 
-  res.status(200).json({ success: "Article successfully deleted" });
+    res.status(200).json({ success: "Article successfully deleted" });
+  } catch (error) {
+    next(error);
+  }
 };
 
-// update an article
+// Update an article
 const UpdateArticle = async (req, res) => {
-  const { id } = req.params;
-
-  const article = await Articles.findByPk(id);
-
-  if (!article || article == 0)
-    return res.status(404).json({ error: "No such article" });
-
-  const image = await ProcessImage(req, article);
-
-  if (image != null && image.error)
-    return res.status(image.status).json(image.error);
-
-  const imageOwnerCount = await Articles.count({
-    where: { image: article.image },
-  });
-
   try {
-    if (imageOwnerCount == 1 && image[0] != article.image) {
-      DeleteImage(article.image);
+    const { id } = req.params;
+    const article = await Articles.findByPk(id);
+
+    if (!article) return res.status(404).json({ error: "No such article" });
+
+    const image = await imageHandler(req, "process", article);
+
+    const imageOwnerCount = await Articles.count({
+      where: { image: article.image },
+    });
+
+    if (article.image && imageOwnerCount === 1 && image[0] !== article.image) {
+      await imageHandler(req, "delete", article.image);
     }
 
     await Articles.update(
@@ -108,7 +93,7 @@ const UpdateArticle = async (req, res) => {
 
     res.status(200).json({ success: "Article successfully updated" });
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    next(error);
   }
 };
 

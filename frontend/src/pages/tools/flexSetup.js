@@ -4,7 +4,7 @@ import $ from "jquery";
 
 import "flexslider/jquery.flexslider";
 
-const flexSetUp = () => {
+const flexSetup = () => {
   $(".flexslider").flexslider({
     animation: "slide",
     start: function (slider) {
@@ -15,4 +15,4 @@ const flexSetUp = () => {
   });
 };
 
-export default flexSetUp;
+export default flexSetup;

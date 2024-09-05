@@ -1,30 +1,24 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useOutlet } from "react-router-dom";
 
-// pages & components
+// components
 import Topbar from "./components/Topbar";
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
+import Footer from "./components/Footer";
 
-import PageNotFound from "./pages/PageNotFound";
-
-import Home from "./pages/Home";
+// homepage
+import HomePage from "./pages/HomePage";
 
 function App() {
+  const outlet = useOutlet();
+
   return (
-    <div className="App">
-      <div className="wrapper">
-        <BrowserRouter>
-          <Topbar />
-          <Navbar />
-          <Sidebar />
-          <div className="pages">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="*" element={<PageNotFound />} />
-            </Routes>
-          </div>
-        </BrowserRouter>
-      </div>
+    <div className="wrapper">
+      <Topbar />
+      <Navbar />
+      <Sidebar />
+      {!outlet ? <HomePage /> : outlet}
+      <Footer />
     </div>
   );
 }

@@ -1,21 +1,21 @@
-//import "./css/home.css";
-
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
+// components
 import Loader from "../components/Loader";
 
+// assets
 import homepage from "../assets/img/homepage.jpg";
 import about from "../assets/img/about.png";
 import icon from "../assets/img/icon.png";
 
+// tools
 import { fetchPackages, fetchArticles } from "./tools/API/fetch";
-
 import fadeLoaderOut from "./tools/fadeLoaderOut";
 import flexSetup from "./tools/flexSetup";
 import owlCarouselSetup from "./tools/owlCarouselSetup";
 
-const Home = () => {
+const HomePage = () => {
   const [packages, setPackages] = useState(null);
   const [articles, setArticles] = useState(null);
 
@@ -1727,14 +1727,26 @@ const Home = () => {
                         <div className="main-info latest-desc">
                           <div className="row">
                             <div className="col-10 col-md-10 main-title">
-                              <Link to="#">{article.title}</Link>
-                              <p>{article.content}</p>
+                              <Link
+                                to={`/artikel/${article.id}/${article.title
+                                  .replace(/[^a-zA-Z0-9 ]/g, "")
+                                  .toLowerCase()
+                                  .replace(/\s/g, "-")}`}
+                              >
+                                {article.title}
+                              </Link>
+                              <p>{article.content.slice(0, 57) + "..."}</p>
                             </div>
                             {/* end columns */}
                           </div>
                           {/* end row */}
                           <span className="arrow">
-                            <Link to="#">
+                            <Link
+                              to={`/artikel/${article.id}/${article.title
+                                .replace(/[^a-zA-Z ]/g, "")
+                                .toLowerCase()
+                                .replace(/\s/g, "-")}`}
+                            >
                               <i className="fa fa-angle-right" />
                             </Link>
                           </span>
@@ -1764,4 +1776,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomePage;

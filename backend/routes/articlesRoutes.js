@@ -14,10 +14,10 @@ router.get("/:id/:limit?", GetArticles);
 // POST a new article
 router.post("/", CreateArticle);
 
-// DELETE an article
-router.delete("/:id", DeleteArticle);
-
 // UPDATE an article
 router.patch("/:id", UpdateArticle);
+
+// DELETE an article
+router.delete("/:id", DeleteArticle);
 
 module.exports = router;

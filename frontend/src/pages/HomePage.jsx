@@ -24,7 +24,7 @@ const HomePage = () => {
 
     async function fetchData() {
       //await setPackages(await fetchPackages("all"));
-      setArticles(await fetchArticles("all/3"));
+      setArticles(await fetchArticles("?limit=3"));
     }
 
     fetchData();

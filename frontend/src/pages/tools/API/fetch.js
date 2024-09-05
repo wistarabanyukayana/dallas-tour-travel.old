@@ -7,13 +7,15 @@ const fetchPackages = async (params) => {
   }
 };
 
-const fetchArticles = async (params) => {
-  const response = await fetch(`/api/articles/${params}`);
-  const json = await response.json();
+const fetchArticles = async (query = "", params = "") => {
+  try {
+    const response = await fetch(`/api/articles${query}${params}`);
+    const json = await response.json();
 
-  if (response.ok) {
-    return json;
-  }
+    if (response.ok) {
+      return json;
+    }
+  } catch (error) {}
 };
 
 module.exports = {

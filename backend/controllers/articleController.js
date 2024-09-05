@@ -1,20 +1,29 @@
 const { Articles } = require("../models");
 const imageHandler = require("../utils/handlers/imageHandler");
 
-// GET all articles, a single article or a certain amount of article
+// GET all articles
 const GetArticles = async (req, res) => {
   try {
-    const { limit, id } = req.params;
+    const { limit } = req.query; // Query param for limit
+
     const queryOptions = {
       order: [["createdAt", "DESC"]],
-      ...(limit && { limit: parseInt(limit) }),
+      ...(limit && { limit: parseInt(limit) }), // Apply limit if provided
     };
 
-    const article =
-      id === "all"
-        ? await Articles.findAll(queryOptions)
-        : await Articles.findByPk(id);
+    const articles = await Articles.findAll(queryOptions);
+    res.status(200).json(articles);
+  } catch (error) {
+    next(error);
+  }
+};
 
+// Get an article
+const GetArticle = async (req, res, next) => {
+  try {
+    const { id } = req.params; // Path param for article ID
+
+    const article = await Articles.findByPk(id);
     if (!article) return res.status(404).json({ error: "No such article" });
 
     res.status(200).json(article);
@@ -99,6 +108,7 @@ const UpdateArticle = async (req, res) => {
 
 module.exports = {
   GetArticles,
+  GetArticle,
   CreateArticle,
   DeleteArticle,
   UpdateArticle,

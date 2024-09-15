@@ -26,13 +26,7 @@ router.get("/:id", articlesIdValidator, validate, GetArticle);
 router.post("/", articleValidator, validate, CreateArticle);
 
 // UPDATE an article by ID
-router.patch(
-  "/:id",
-  articlesIdValidator,
-  articleValidator,
-  validate,
-  UpdateArticle
-);
+router.patch("/:id", articlesIdValidator, validate, UpdateArticle);
 
 // DELETE an article by ID
 router.delete("/:id", articlesIdValidator, validate, DeleteArticle);

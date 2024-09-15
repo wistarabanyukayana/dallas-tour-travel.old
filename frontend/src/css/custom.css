@@ -185,3 +185,44 @@ table.details > tbody > tr > td {
 .owl-dot:hover span {
   background: #fa1a1a !important;
 }
+
+.image-upload {
+  display: flex;
+  flex-direction: column;
+  min-height: 25vh;
+  justify-content: center;
+  align-items: center;
+  border: 2px dashed lightgray;
+  border-radius: 5px;
+}
+
+.image-upload img {
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.image-upload i {
+  font-size: 100px;
+}
+
+.image-upload p {
+  color: black;
+  font-size: 25px;
+}
+
+.image-upload-detail {
+  display: flex;
+  margin-top: 10px;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 20px;
+  border-radius: 5px;
+  background-color: lightgray;
+}
+
+.image-upload-name {
+  display: flex;
+  margin-left: 10px;
+  margin-right: 3px;
+  align-items: center;
+}

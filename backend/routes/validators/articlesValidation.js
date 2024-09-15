@@ -3,7 +3,7 @@ const { body, param, query } = require("express-validator");
 // Validation for article creation and updates
 const articleValidator = [
   // Validate title
-  body("title")
+  body("Title")
     .notEmpty()
     .withMessage("Title must not be empty")
     .isString()
@@ -12,7 +12,7 @@ const articleValidator = [
     .escape(),
 
   // Validate content
-  body("content")
+  body("Content")
     .notEmpty()
     .withMessage("Content must not be empty")
     .isString()
@@ -23,7 +23,7 @@ const articleValidator = [
     .escape(),
 
   // Validate author
-  body("author")
+  body("Author")
     .notEmpty()
     .withMessage("Author must not be empty")
     .isString()
@@ -32,25 +32,10 @@ const articleValidator = [
     .escape(),
 
   // Validate lastEditor (if provided)
-  body("lastEditor")
+  body("LastEditor")
     .optional()
     .isString()
     .withMessage("LastEditor must be a string")
-    .trim()
-    .escape(),
-
-  // Validate and sanitize image (if provided)
-  body("image")
-    .optional()
-    .isString()
-    .withMessage("Image must be a string")
-    .trim()
-    .escape(),
-
-  body("imageURL")
-    .optional()
-    .isURL()
-    .withMessage("Image URL must be a valid URL")
     .trim()
     .escape(),
 ];

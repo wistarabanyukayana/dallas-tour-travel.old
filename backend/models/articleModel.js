@@ -9,21 +9,17 @@ module.exports = (sequelize, DataTypes) => {
   Articles.init(
     {
       // Model attributes are defined here
-      id: {
+      Id: {
         type: DataTypes.UUID,
         allowNull: false,
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
       },
-      image: {
+      ImageName: {
         type: DataTypes.STRING,
         defaultValue: "defaultArticlesImg.png",
       },
-      imageURL: {
-        type: DataTypes.STRING,
-        defaultValue: "http://localhost:4000/images/defaultArticlesImg.png",
-      },
-      title: {
+      Title: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
@@ -31,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
           notEmpty: { msg: "Title must not be empty" },
         },
       },
-      content: {
+      Content: {
         type: DataTypes.STRING(7000),
         allowNull: false,
         validate: {
@@ -39,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
           notEmpty: { msg: "Content must not be empty" },
         },
       },
-      author: {
+      Author: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
@@ -47,7 +43,7 @@ module.exports = (sequelize, DataTypes) => {
           notEmpty: { msg: "Author must not be empty" },
         },
       },
-      lastEditor: {
+      LastEditor: {
         type: DataTypes.STRING,
       },
     },
@@ -55,6 +51,9 @@ module.exports = (sequelize, DataTypes) => {
       // Other model options go here
       sequelize, // We need to pass the connection instance
       modelName: "Articles", // We need to choose the model name
+      timestamps: true,
+      createdAt: "CreatedAt",
+      updatedAt: "UpdatedAt",
     }
   );
   return Articles;

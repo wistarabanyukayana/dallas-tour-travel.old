@@ -4,10 +4,10 @@ const path = require("path");
 // Process and Save Images
 const ProcessImage = async (req, model) => {
   const allowedFileType = [".png", ".jpg", ".jpeg"];
-  let image = [null, null];
+  let imageName = null;
 
   if (req.files) {
-    const file = req.files.file;
+    const file = req.files.File;
     const fileExt = path.extname(file.name).toLowerCase();
 
     if (!allowedFileType.includes(fileExt)) {
@@ -23,26 +23,39 @@ const ProcessImage = async (req, model) => {
     }
 
     const fileName = `${file.md5}${fileExt}`;
-    const filePath = path.join(__dirname, "../public/images", fileName);
+    const filePath = path.join(__dirname, "../../public/images", fileName);
 
-    await file.mv(filePath);
+    // Check if the file already exists
+    if (fs.existsSync(filePath)) {
+      console.log(`File ${fileName} already exists, using the existing file.`);
+    } else {
+      // If the file doesn't exist, save it
+      console.log(`Saving new file to: ${filePath}`);
+      await file.mv(filePath);
+    }
 
-    const imageURL = `${req.protocol}://${req.get("host")}/images/${fileName}`;
-    image = [fileName, imageURL];
-  } else if (req.body.image || req.body.imageURL) {
-    image = [req.body.image, req.body.imageURL];
+    imageName = fileName;
+  } else if (req.body.ImageName) {
+    imageName = req.body.ImageName;
   } else if (model) {
-    image = [model.image, model.imageURL];
+    imageName = model.ImageName;
   }
 
-  return image;
+  return imageName;
 };
 
 // Delete Image
 const DeleteImage = async (imageName) => {
-  const filePath = path.join(__dirname, "../public/images", imageName);
+  const filePath = path.join(__dirname, "../../public/images", imageName);
   try {
-    fs.unlink(filePath);
+    if (fs.existsSync(filePath)) {
+      fs.unlink(filePath, (err) => {
+        if (err) throw err;
+        console.log(`Successfully deleted ${imageName}`);
+      });
+    } else {
+      console.warn(`File ${imageName} does not exist`);
+    }
   } catch (error) {
     console.error(`Failed to delete image: ${error.message}`);
   }
@@ -50,17 +63,17 @@ const DeleteImage = async (imageName) => {
 
 // Image Handler
 const imageHandler = async (req, option, value = null) => {
-   if (option === "delete") {
-     return await DeleteImage(value);
-   } else if (option === "process") {
-     const image = await ProcessImage(req, article);
-     if (image && image.error) {
-       throw { status: image.status, error: image.error };
-     }
-     return image;
-   } else {
-     throw { status: 505, error: "Image Processing Function is not specified" };
-   }
- };
+  if (option === "delete") {
+    return await DeleteImage(value);
+  } else if (option === "process") {
+    const image = await ProcessImage(req, value);
+    if (image && image.error) {
+      throw { status: image.status, error: image.error };
+    }
+    return image;
+  } else {
+    throw { status: 505, error: "Image Processing Function is not specified" };
+  }
+};
 
 module.exports = imageHandler;

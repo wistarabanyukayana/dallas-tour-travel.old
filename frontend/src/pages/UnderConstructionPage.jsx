@@ -6,11 +6,10 @@ import { Link } from "react-router-dom";
 import Loader from "../components/Loader";
 
 import logo from "../assets/img/logo.png";
+import fadeLoaderOut from "./tools/fadeLoaderOut";
 
 const UnderConstructionPage = () => {
-  useEffect(() => {
-    $(".loader").fadeOut("slow");
-  }, []);
+  useEffect(fadeLoaderOut, []);
 
   return (
     <div className="page-under-construction">

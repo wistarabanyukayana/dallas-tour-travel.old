@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 
 // Bootstrap CSS
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -14,6 +14,7 @@ import "./css/custom.css";
 
 // pages
 import App from "./App";
+import CreateArticlePage from "./pages/CreateArticlePage";
 import NotFoundPage from "./pages/NotFoundPage";
 import UnderConstructionPage from "./pages/UnderConstructionPage";
 
@@ -30,7 +31,7 @@ const router = createBrowserRouter(
           children: [
             {
               path: "haji",
-              element: <UnderConstructionPage />,
+              element: <NotFoundPage />,
             },
             {
               path: "umroh",
@@ -44,7 +45,16 @@ const router = createBrowserRouter(
         },
         {
           path: "artikel",
-          element: <UnderConstructionPage />,
+          children: [
+            {
+              index: true,
+              element: <UnderConstructionPage />,
+            },
+            {
+              path: "buat",
+              element: <CreateArticlePage />,
+            },
+          ],
         },
         {
           path: "galeri",

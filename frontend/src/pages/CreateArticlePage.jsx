@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import Loader from "../components/Loader";
 import fadeLoaderOut from "./tools/fadeLoaderOut";
 
-const HomePage = () => {
+const CreateArticlePage = () => {
   const [image, setImage] = useState(null);
   const [preview, setPreview] = useState(null);
   const [fileName, setFileName] = useState("Tidak ada File yang Dipilih");
@@ -17,13 +17,18 @@ const HomePage = () => {
   const [error, setError] = useState(null);
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    if (!e.target.checkValidity()) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+
+    e.target.classList.add("was-validated");
 
     const formData = new FormData();
-    formData.append("file", image);
-    formData.append("title", title);
-    formData.append("content", content);
-    formData.append("author", author);
+    formData.append("File", image);
+    formData.append("Title", title);
+    formData.append("Content", content);
+    formData.append("Author", author);
 
     const response = await fetch("/api/articles", {
       method: "POST",
@@ -33,7 +38,11 @@ const HomePage = () => {
     const json = await response.json();
 
     if (!response.ok) {
-      setError(json.error + ": " + json.details[0].msg);
+      setError(
+        json.details.map((detail) => {
+          return detail.msg + ", ";
+        })
+      );
     }
 
     if (response.ok) {
@@ -87,7 +96,7 @@ const HomePage = () => {
               <div className="col-md-12">
                 <div className="d-flex flex-column justify-content-center">
                   <div className="flex-grow">
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit} noValidate>
                       <div
                         className="image-upload flex-grow"
                         onClick={() => {
@@ -158,7 +167,11 @@ const HomePage = () => {
                           className="form-control"
                           id="title"
                           placeholder="Judul"
+                          required
                         />
+                        <div className="invalid-feedback">
+                          Judul tidak boleh kosong
+                        </div>
                       </div>
                       <div className="mb-3">
                         <label htmlFor="article-content" className="form-label">
@@ -175,9 +188,16 @@ const HomePage = () => {
                           className="form-control"
                           id="article-content"
                           rows="20"
+                          required
                         ></textarea>
+                        <div className="invalid-feedback">
+                          Isi tidak boleh kosong
+                        </div>
                       </div>
-                      <button className="btn btn-orange btn-block rounded">
+                      <button
+                        className="btn btn-orange btn-block rounded"
+                        type="submit"
+                      >
                         Buat Artikel
                       </button>
                       {error && <div className="error">{error}</div>}
@@ -201,4 +221,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default CreateArticlePage;

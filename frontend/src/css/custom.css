@@ -226,3 +226,12 @@ table.details > tbody > tr > td {
   margin-right: 3px;
   align-items: center;
 }
+
+div.error {
+  padding: 10px;
+  background: none;
+  border: 1px solid #fa1a1a;
+  color: #fa1a1a;
+  border-radius: 4px;
+  margin: 20px 0;
+}
